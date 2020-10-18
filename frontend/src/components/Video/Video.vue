@@ -1,5 +1,5 @@
 <template>
-  <video class="video" autoplay>
+  <video class="video shadow" autoplay muted>
   </video>
 </template>
 
@@ -7,21 +7,17 @@
 import { Options, Vue } from 'vue-class-component'
 
 @Options({
-  data () {
-    return {
-      stream: null
-    }
+  props: {
+    stream: Object
   },
-
-  async mounted () {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-    this.stream = stream
+  mounted () {
     const video = document.querySelector('.video') as HTMLVideoElement
     console.log(this.stream)
-    if (video) video.srcObject = this.stream
+    if (video) video.srcObject = this.stream.localStream
   }
 })
 export default class Video extends Vue {
+  stream!: Record<string, unknown>
 }
 </script>
 

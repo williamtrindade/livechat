@@ -3,8 +3,8 @@
     <div class="header">
       Livechat
     </div>
-    <div class="body">
-      <Video></Video>
+    <div class="body localVideo" v-if="localStream != null">
+      <Video :stream={localStream}></Video>
     </div>
   </div>
 </template>
@@ -16,6 +16,16 @@ import Video from '@/components/Video/Video.vue'
 @Options({
   components: {
     Video
+  },
+  data () {
+    return {
+      localStream: null
+    }
+  },
+  mounted () {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then((localStream) => {
+      this.localStream = localStream
+    })
   }
 })
 export default class Chat extends Vue {}
