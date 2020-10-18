@@ -1,12 +1,10 @@
 <template>
   <div class="chat">
-    <div class="card">
-      <div class="card-header">
-        Livechat
-      </div>
-      <div class="card-body">
-        <Video></Video>
-      </div>
+    <div class="header">
+      Livechat
+    </div>
+    <div class="body">
+      <Video></Video>
     </div>
   </div>
 </template>
@@ -24,20 +22,28 @@ export default class Chat extends Vue {}
 </script>
 
 <style scoped>
-.chat, .card {
-  background-color: rgb(219, 219, 219);
-  float: left;
+.chat {
+
+  height: 100%;
+  width: 100%;
+  background-color: rgb(207, 207, 207);
+}
+.header {
+  z-index: 30;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 50px;
+  position: fixed;
+  background-color:rgb(28, 0, 41);
+  color: white;
+}
+.body {
+  padding-top: 5%;
+  overflow: scroll;
   width: 100%;
   height: 100%;
-}
-div.card .card-header {
-  color: #fff;
-  border-radius: 0;
-  border: none;
-  background-color: rgb(0, 0, 0);
-}
-div.card {
-  border-radius: 0;
-  border: none;
+  float: left;
 }
 </style>
