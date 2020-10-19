@@ -19,4 +19,16 @@
 .right {
   float: right;
 }
+.b-left {
+  float: left;
+}
+.b-right {
+  float: right;
+}
+input.form-control {
+  border-radius: 0;
+}
+button.btn {
+  border-radius: 0;
+}
 </style>
