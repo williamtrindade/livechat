@@ -39,7 +39,7 @@ export default class AuthController {
     })
 
     const userDetails = await request.validate({
-      schema: validationSchema
+      schema: validationSchema,
     })
 
     /**
