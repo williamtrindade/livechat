@@ -7,7 +7,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/app',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { requireAuth: true }
   },
   {
     path: '/auth/login',
@@ -24,6 +25,22 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const requireAuth = to.meta.requireAuth ?? false
+  const accessToken = localStorage.getItem('access_token') ?? false
+  if ((requireAuth && accessToken) || (!requireAuth && !accessToken)) {
+    next()
+    return
+  }
+  if (!requireAuth && accessToken) {
+    router.push({ name: 'Home' })
+  }
+  if (requireAuth && !accessToken) {
+    router.push({ name: 'Login' })
+  }
+  next()
 })
 
 export default router

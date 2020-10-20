@@ -13,14 +13,46 @@
         <div class="rigth">
           <div class="col-md-6 col-sm-12 p-0">
             <div class="login-form p-5">
-              <form>
+              <form v-on:submit.prevent="register">
+                 <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      id="mame"
+                      type="text"
+                      class="form-control"
+                      placeholder="User name"
+                      v-model="user.name"
+                    >
+                </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="text" class="form-control" placeholder="User email">
+                    <input
+                      id="email"
+                      type="email"
+                      class="form-control"
+                      placeholder="User email"
+                      v-model="user.email"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control" placeholder="Password">
+                    <input
+                      id="password"
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      v-model="user.password"
+                    >
+                </div>
+                 <div class="form-group">
+                    <label for="password">Confirm your password</label>
+                    <input
+                      id="password"
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      v-model="user.password_confirmation"
+                    >
                 </div>
                 <div class="buttons-box">
                   <Button text="Register" buttonClass="primary"></Button>
@@ -40,9 +72,24 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Button from '@/components/Buttons/Button.vue'
+import AuthService from '@/services/AuthService'
+
 @Options({
   components: {
     Button
+  },
+  data () {
+    return {
+      user: {}
+    }
+  },
+  methods: {
+    register () {
+      const service = new AuthService()
+      service.register(this.user).then((response) => {
+        console.log(response)
+      })
+    }
   }
 })
 export default class Register extends Vue {}
