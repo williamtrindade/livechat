@@ -5,7 +5,7 @@ import Register from '@/views/auth/Register.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/app',
+    path: '/',
     name: 'Home',
     component: Home,
     meta: { requireAuth: true }

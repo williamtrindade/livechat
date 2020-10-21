@@ -86,9 +86,10 @@ import AuthService from '@/services/AuthService'
   methods: {
     register () {
       const service = new AuthService()
-      service.register(this.user).then((response) => {
-        console.log(response)
-      })
+      service.register(this.user)
+        .then((response) => {
+          console.log(response)
+        })
     }
   }
 })
