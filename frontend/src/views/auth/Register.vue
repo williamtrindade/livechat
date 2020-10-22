@@ -48,7 +48,7 @@
                     <label for="password">Confirm your password</label>
                     <input
                       id="password"
-                      type="password"
+                      type="password_confirmation"
                       class="form-control"
                       placeholder="Password"
                       v-model="user.password_confirmation"
@@ -73,6 +73,7 @@
 import { Options, Vue } from 'vue-class-component'
 import Button from '@/components/Buttons/Button.vue'
 import AuthService from '@/services/AuthService'
+import NotificationService from '@/services/NotificationService'
 
 @Options({
   components: {
@@ -85,10 +86,12 @@ import AuthService from '@/services/AuthService'
   },
   methods: {
     register () {
+      console.log(this.user)
       const service = new AuthService()
       service.register(this.user)
-        .then((response) => {
-          console.log(response)
+        .then(() => {
+          NotificationService.success('Usuário cadastrado!')
+          this.$router.push({ name: 'Login' })
         })
     }
   }

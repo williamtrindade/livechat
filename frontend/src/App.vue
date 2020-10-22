@@ -1,8 +1,21 @@
 <template>
   <div id="app">
+    <LoadingSpinner />
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component'
+import LoadingSpinner from '@/components/Spinner/LoadingSpinner.vue'
+
+@Options({
+  components: {
+    LoadingSpinner
+  }
+})
+export default class Contacts extends Vue {}
+</script>
 
 <style lang="scss">
 #app, body, html {

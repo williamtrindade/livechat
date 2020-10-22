@@ -1,25 +1,17 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
-import { schema, rules, validator } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
-  /**
-   * Login
-   * @param request
-   * @param auth
-   */
   public async login ({ request, auth }: HttpContextContract) {
     const email = request.input('email')
     const password = request.input('password')
 
     const token = await auth.use('api').attempt(email, password, { expiresIn: '5 days' })
-    return token.toJSON()
+    const user = await User.findBy('email', email)
+    return { token: token.toJSON(), user: user }
   }
 
-  /**
-   * Register
-   * @param request
-   */
   public async register ({ request }: HttpContextContract) {
     /**
      * Validate user details
@@ -52,5 +44,10 @@ export default class AuthController {
     await user.save()
 
     return { message: 'Your account has been created' }
+  }
+
+  public async logout ({ auth }: HttpContextContract) {
+    await auth.use('api').logout()
+    return { message: 'Your token are deleted' }
   }
 }
