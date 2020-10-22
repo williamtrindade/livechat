@@ -13,14 +13,14 @@
         <div class="rigth">
           <div class="col-md-6 col-sm-12 p-0">
             <div class="login-form p-5">
-              <form>
+              <form v-on:submit.prevent="send">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="text" class="form-control" placeholder="User email">
+                    <input v-model="user.email" id="email" type="text" class="form-control" placeholder="User email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control" placeholder="Password">
+                    <input v-model="user.password" id="password" type="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="buttons-box">
                   <Button text="Login" buttonClass="primary"></Button>
@@ -40,10 +40,26 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Button from '@/components/Buttons/Button.vue'
+import AuthService from '@/services/AuthService'
 
 @Options({
   components: {
     Button
+  },
+  data () {
+    return {
+      user: {}
+    }
+  },
+  methods: {
+    send () {
+      console.log(this.user)
+      const service = new AuthService()
+      service.login(this.user)
+        .then(() => {
+          this.$router.push({ name: 'Home' })
+        })
+    }
   }
 })
 export default class Login extends Vue {}

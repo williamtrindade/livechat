@@ -1,7 +1,7 @@
 <template>
   <div class="chat">
     <div class="header">
-      Livechat
+      Chat
     </div>
     <div class="body localVideo" v-if="localStream != null">
       <Video :stream={localStream}></Video>
@@ -33,7 +33,6 @@ export default class Chat extends Vue {}
 
 <style scoped>
 .chat {
-
   height: 100%;
   width: 100%;
   background-color: rgb(207, 207, 207);
@@ -46,7 +45,7 @@ export default class Chat extends Vue {}
   justify-content: left;
   height: 50px;
   position: fixed;
-  background-color:rgb(28, 0, 41);
+  background-color:rgb(0, 0, 0);
   color: white;
 }
 .body {

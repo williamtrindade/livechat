@@ -1,7 +1,7 @@
 <template>
   <div class="contacts">
     <div class="header">
-      <i class="fas fa-users"></i> <span class="ml-2">Contacts</span>
+      Contacts
     </div>
     <div class="body">
     </div>
@@ -28,10 +28,10 @@ export default class Contacts extends Vue {}
   justify-content: center;
   height: 50px;
   position: fixed;
-  width: 17%;
+  width: 16.7%;
   float: left;
   background-color:red;
-  background-color:rgb(28, 0, 41);
+  background-color:rgb(0, 0, 0);
   color: white;
 }
 </style>
