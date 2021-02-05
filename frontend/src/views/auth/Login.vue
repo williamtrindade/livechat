@@ -4,7 +4,7 @@
       <div class="col-md-4 p-0">
         <div class="left">
           <div class="login-main-text">
-            <h2>{{ process.env.VUE_APP_NAME }}</h2><br>
+            <h2>{{ appName }}</h2><br>
             <p>Connecting people by livestreming.</p>
           </div>
         </div>
@@ -48,7 +48,8 @@ import AuthService from '@/services/AuthService'
   },
   data () {
     return {
-      user: {}
+      user: {},
+      appName: process.env.VUE_APP_NAME
     }
   },
   methods: {
